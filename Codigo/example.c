@@ -20,10 +20,10 @@ int main (void)
   struct bixprog * BIX;
   double * TKNK;
   double epoch_in, inclination_deg, ra_asc_node_deg,
-    eccentricity, arg_perigee_deg, mean_anomaly_deg, 
+    eccentricity, arg_perigee_deg, mean_anomaly_deg,
     semimajor_axis_earth_radii, deg2rad, rad2deg, nu, snu, cnu, ballistic_coef;
   int pock, pzdachi;
-  int object_in, rev_num_in, I,J,i,j;  
+  int object_in, rev_num_in, I,J,i,j;
   char input_file[256];
   int NUM_STEPS_TO_PROPAGATE;
   double STEP_SIZE_IN_DAYS;
@@ -68,7 +68,7 @@ int main (void)
       output_type = 2;
       pzdachi = 0;
       pock = -2;
-		      
+
 
   /* Allocate memory for the TKNK and BIX arrays. */
   if ((TKNK = (double *) calloc(NUM_STEPS_TO_PROPAGATE, sizeof(double))) == NULL)
@@ -129,7 +129,7 @@ int main (void)
   L           =  PROGNOZ(1,&BX,BIX,TKNK);
 
   /* Check for errors. */
-  if (L > 0) 
+  if (L > 0)
     {
       printf("Error return %d from PROGNOZ.\n", L);
     }
@@ -187,7 +187,7 @@ int main (void)
   L           =  PROGNOZ(NUM_STEPS_TO_PROPAGATE,&BX,BIX,TKNK);
 
   /* Check for errors. */
-  if (L > 0) 
+  if (L > 0)
     {
       printf("Error return %d from PROGNOZ.\n", L);
     }
@@ -224,10 +224,10 @@ int main (void)
     {
       for (i = 0; i < NUM_STEPS_TO_PROPAGATE; i++)
 	{
-	  printf("%09.9lf %09.9lf %09.9lf %09.9lf\n", 
+	  printf("%09.9lf %09.9lf %09.9lf %09.9lf\n",
 		 BIX[i].bix.DT,
-		 BIX[i].X[0], 
-		 BIX[i].X[1], 
+		 BIX[i].X[0],
+		 BIX[i].X[1],
 		 BIX[i].X[2]);
 	}
     }
@@ -243,7 +243,7 @@ int main (void)
 		 BIX[i].Y[3],
 		 BIX[i].Y[4],
 		 BIX[i].Y[5]);
-        } 
+        }
     }
   else if (output_type == KEPLER_OSC_OUTPUT)
     {
@@ -314,7 +314,50 @@ int get_elset_input(char * filename_in,
 		    int * pock,
 		    int * pzadachi,
 		    int * output_type){
-	
+	FILE *f = open("fichero.txt", "r");
+  char cadena[100];
+  double dato;
+  if(f==NULL){
+    return 1;
+  }else{
+    while(f!=NULL){
+      fscan(f, "%s %lf", cadena, &dato);
+      if(cadena == "epoch_in"){
+        *epoch_in = (int)dato;
+      }else if(cadena == "object_in"){
+        *object_in = (int)dato;
+      }else if(cadena == "rev_num_in"){
+        *rev_num_in = (int)dato;
+      }else if(cadena == "step_size_in_days"){
+        *step_size_in_days = dato;
+      }else if(cadena == "number_of_steps"){
+        *number_of_steps = (int)dato;
+      }else if(cadena == "semimajor_axis_km"){
+        *semimajor_axis_km = dato;
+      }else if(cadena == "inclination_deg"){
+        *inclination_deg = dato;
+      }else if(cadena == "ra_asc_node_deg"){
+        *ra_asc_node_deg = dato;
+      }else if(cadena == "eccentricity"){
+        *eccentricity = dato;
+      }else if(cadena == "arg_perigee_deg"){
+        *arg_perigee_deg = dato;
+      }else if(cadena == "mean_anomaly_deg"){
+        *mean_anomaly_deg = dato;
+      }else if(cadena == "ballistic_coef"){
+        *ballistic_coef = (int)dato;
+      }else if(cadena == "pock"){
+        *pock = (int)dato;
+      }else if(cadena == "pzdachi"){
+        *pzadachi = (int)dato;
+      }else if(cadena == "output_type"){
+        *output_type = (int)dato;
+      }else if(cadena == "prmodel"){
+        *prmodel = (int)dato;
+      }else{
+        perror("Parametro no valido")
+        return 1;
+      }
+    }
+  }
 }
-
-
