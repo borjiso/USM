@@ -22,7 +22,7 @@ int main (void)
   double epoch_in, inclination_deg, ra_asc_node_deg,
     eccentricity, arg_perigee_deg, mean_anomaly_deg,
     semimajor_axis_earth_radii, deg2rad, rad2deg, nu, snu, cnu, ballistic_coef;
-  int pock, pzdachi;
+  int prmodel, pock, pzdachi;
   int object_in, rev_num_in, I,J,i,j;
   char input_file[256];
   int NUM_STEPS_TO_PROPAGATE;
@@ -35,7 +35,7 @@ int main (void)
   /* Read the data from the input.txt file. */
   snprintf(input_file, 256, "%s", "input.txt");
 
-  if (/*get_elset_input(input_file,
+  if (get_elset_input(input_file,
 		      &epoch_in,
 		      &object_in,
 		      &rev_num_in,
@@ -48,7 +48,10 @@ int main (void)
 		      &arg_perigee_deg,
 		      &mean_anomaly_deg,
 		      &ballistic_coef,
-		      &output_type)*/0 == 1)
+          &prmodel,
+          &pock,
+          &pzdachi,
+		      &output_type) == 1)
     {
       printf("Error reading input from %s.\n","input.txt");
       return 1;
@@ -321,7 +324,7 @@ int get_elset_input(char * filename_in,
     return 1;
   }else{
     while(f!=NULL){
-      fscan(f, "%s %lf", cadena, &dato);
+      fscanf(f, "%s %lf", cadena, &dato);
       if(cadena == "epoch_in"){
         *epoch_in = (int)dato;
       }else if(cadena == "object_in"){
@@ -333,7 +336,7 @@ int get_elset_input(char * filename_in,
       }else if(cadena == "number_of_steps"){
         *number_of_steps = (int)dato;
       }else if(cadena == "semimajor_axis_km"){
-        *semimajor_axis_km = dato;
+        *semimajor_axis_earth_radii = dato;
       }else if(cadena == "inclination_deg"){
         *inclination_deg = dato;
       }else if(cadena == "ra_asc_node_deg"){
@@ -355,7 +358,7 @@ int get_elset_input(char * filename_in,
       }else if(cadena == "prmodel"){
         *prmodel = (int)dato;
       }else{
-        perror("Parametro no valido")
+        perror("Parametro no valido");
         return 1;
       }
     }
