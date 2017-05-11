@@ -33,7 +33,7 @@ int main (void)
   deg2rad = EXAMPLE_PI / 180;
 
   /* Read the data from the input.txt file. */
-  snprintf(input_file, 256, "%s", "input.txt");
+  snprintf(input_file, 256, "%s", "usm_input.txt");
 
   if (get_elset_input(input_file,
 		      &epoch_in,
@@ -53,7 +53,7 @@ int main (void)
           &pzdachi,
 		      &output_type) == 1)
     {
-      printf("Error reading input from %s.\n","input.txt");
+      printf("Error reading input from %s.\n",input_file);
       return 1;
     }
       epoch_in = 51726;
