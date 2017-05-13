@@ -1,3 +1,4 @@
+
 #include "hoko.h"
 #include <math.h>
 #include "aux_fun.h"
@@ -14,6 +15,7 @@ extern int Yes_return;
 
 int main (void)
 {
+	printf("Empiezo.\n");
   int L, NTOCH;
   double MIZ[6];
   struct bxprog BX;
@@ -33,6 +35,7 @@ int main (void)
   deg2rad = EXAMPLE_PI / 180;
 
   /* Read the data from the input.txt file. */
+printf("1.\n");
   snprintf(input_file, 256, "%s", "usm_input.txt");
 
   if (get_elset_input(input_file,
@@ -317,50 +320,51 @@ int get_elset_input(char * filename_in,
 		    int * pock,
 		    int * pzadachi,
 		    int * output_type){
-	FILE *f = open("fichero.txt", "r");
+	printf("Abriendo fichero...\n");
+	FILE *fe = fopen(filename_in, "r");
+printf("Fichero abierto.\n");
   char cadena[100];
-  double dato;
-  if(f==NULL){
+  double *dato = 0;
+  if(fe==NULL){
     return 1;
   }else{
-    while(f!=NULL){
-      fscanf(f, "%s %lf", cadena, &dato);
-      if(cadena == "epoch_in"){
-        *epoch_in = (int)dato;
-      }else if(cadena == "object_in"){
-        *object_in = (int)dato;
-      }else if(cadena == "rev_num_in"){
-        *rev_num_in = (int)dato;
-      }else if(cadena == "step_size_in_days"){
-        *step_size_in_days = dato;
-      }else if(cadena == "number_of_steps"){
-        *number_of_steps = (int)dato;
-      }else if(cadena == "semimajor_axis_km"){
-        *semimajor_axis_earth_radii = dato;
-      }else if(cadena == "inclination_deg"){
-        *inclination_deg = dato;
-      }else if(cadena == "ra_asc_node_deg"){
-        *ra_asc_node_deg = dato;
-      }else if(cadena == "eccentricity"){
-        *eccentricity = dato;
-      }else if(cadena == "arg_perigee_deg"){
-        *arg_perigee_deg = dato;
-      }else if(cadena == "mean_anomaly_deg"){
-        *mean_anomaly_deg = dato;
-      }else if(cadena == "ballistic_coef"){
-        *ballistic_coef = (int)dato;
-      }else if(cadena == "pock"){
-        *pock = (int)dato;
-      }else if(cadena == "pzdachi"){
-        *pzadachi = (int)dato;
-      }else if(cadena == "output_type"){
-        *output_type = (int)dato;
-      }else if(cadena == "prmodel"){
-        *prmodel = (int)dato;
-      }else{
-        perror("Parametro no valido");
-        return 1;
-      }
-    }
+	printf("Casi leyendo\n");
+	fscanf(fe, "epoch_in %lf", dato);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", epoch_in);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", object_in);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", rev_num_in);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", step_size_in_days);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", number_of_steps);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", semimajor_axis_earth_radii);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", inclination_deg);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", ra_asc_node_deg);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", eccentricity);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", arg_perigee_deg);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", mean_anomaly_deg);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %lf", ballistic_coef);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", prmodel);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", pock);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", pzadachi);
+  printf("una lectura\n");
+	fscanf(fe, "epoch_in %d", output_type);
+  printf("una lectura\n");
+
+	fclose(f);
+ return 1;
   }
 }
