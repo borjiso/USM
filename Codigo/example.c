@@ -1,4 +1,3 @@
-
 #include "hoko.h"
 #include <math.h>
 #include "aux_fun.h"
@@ -328,43 +327,42 @@ printf("Fichero abierto.\n");
   if(fe==NULL){
     return 1;
   }else{
-	printf("Casi leyendo\n");
-	fscanf(fe, "epoch_in %lf", dato);
-  printf("una lectura\n");
+	printf("Obteniendo datos...\n");
 	fscanf(fe, "epoch_in %lf", epoch_in);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", object_in);
+	fscanf(fe, "object_in %d", object_in);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", rev_num_in);
+	fscanf(fe, "rev_num_in %d", rev_num_in);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", step_size_in_days);
+	fscanf(fe, "step_size_in_days %lf", step_size_in_days);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", number_of_steps);
+	fscanf(fe, "number_of_steps %d", number_of_steps);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", semimajor_axis_earth_radii);
+	fscanf(fe, "semimajor_axis_km %lf", semimajor_axis_earth_radii);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", inclination_deg);
+	fscanf(fe, "inclination_deg %lf", inclination_deg);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", ra_asc_node_deg);
+	fscanf(fe, "ra_asc_node_deg %lf", ra_asc_node_deg);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", eccentricity);
+	fscanf(fe, "eccentricity %lf", eccentricity);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", arg_perigee_deg);
+	fscanf(fe, "arg_perigee_deg %lf", arg_perigee_deg);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", mean_anomaly_deg);
+	fscanf(fe, "mean_anomaly_deg %lf", mean_anomaly_deg);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %lf", ballistic_coef);
+	fscanf(fe, "ballistic_coef %lf", ballistic_coef);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", prmodel);
+	fscanf(fe, "pock %d", pock);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", pock);
+	fscanf(fe, "pzadachi %d", pzadachi);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", pzadachi);
+	fscanf(fe, "output_type %d", output_type);
   printf("una lectura\n");
-	fscanf(fe, "epoch_in %d", output_type);
+	fscanf(fe, "prmodel %d", prmodel);
   printf("una lectura\n");
-
-	fclose(f);
- return 1;
+	if(fe !=NULL){
+		fclose(fe);
+	}
+ return 0;
   }
 }
