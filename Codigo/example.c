@@ -37,7 +37,6 @@ int main (void)
   /* Read the data from the input.txt file. */
 printf("1.\n");
   snprintf(input_file, 256, "%s", "usm_input.txt");
-	
   if (get_elset_input(input_file,
 		      &epoch_in,
 		      &object_in,
@@ -75,7 +74,6 @@ printf("1.\n");
 	printf("pzdachi: %d\n",pzdachi);
 	printf("output_type: %d\n",output_type);
 	printf("prmodel: %d\n",prmodel);
-	
 
   /* Allocate memory for the TKNK and BIX arrays. */
   if ((TKNK = (double *) calloc(NUM_STEPS_TO_PROPAGATE, sizeof(double))) == NULL)
