@@ -649,9 +649,9 @@ double JVC_DLL BIN(double B, int A, int K) {
 ;
 /**
  * @brief Calculation of inclination function and its derivative.
- * @param  L   [description]
- * @param  M   [description]
- * @param  P   [description]
+ * @param  L
+ * @param  M
+ * @param  P
  * @param  S   sin(.5*i)
  * @param  C   cos(.5*i)
  * @param  FF1 value of inclination function.
@@ -725,14 +725,14 @@ void JVC_DLL FINC(int L, int M, int P, double S, double C, double far *FF1,
 
 ;
 /**
- * [HANSEN description]
- * @param  N  [description]
- * @param  P  [description]
- * @param  Q  [description]
- * @param  E  [description]
- * @param  A  [description]
- * @param  A1 [description]
- * @return    [description]
+ * @brief Calculation of Hansen function and its derivative.
+ * @param  N  eccentricity
+ * @param  P  eccentricity
+ * @param  Q  eccentricity
+ * @param  E  eccentricity
+ * @param  A  value of Hansen function
+ * @param  A1 derivative of Hansen function
+ * @return    void
  */
 void JVC_DLL HANSEN(int N, int P, int Q, double E, double far *A,
                     double far *A1) {
