@@ -1,5 +1,4 @@
 #include "hoko.h"
-
 int LM = 2, LT = 0, LKL = ((LLUN + 1) * (LLUN + 2) - 6),
     LKS = ((LSUN + 1) * (LSUN + 2) - 6), JREZ[MAXREZ], L, M, PSUNDAB = 0,
     PATMOSFERA = 0, PLUNASUN = 0;
@@ -115,7 +114,8 @@ double const    HK1[300]
 ;
 /**
 @brief Input of the Earth gravity field coefficients
-@returns bool true, if inputting was succesful, false, if it was detected input error.
+@returns bool true, if inputting was succesful, false, if it was detected input
+error.
 
 */
 bool JVC_DLL GEM_input(void) {
@@ -277,13 +277,13 @@ void JVC_DLL ALFDEL(double T, double far *ALF, double far *DEL) {
      EK[3]=Vx(km/c),EK[4]=Vy(km/c),EK[5]=Vz(km/c).
          ---------------------------------------------------------------- */
 
-         /**
-         @brief Transformation of Kepler elements to coordinates and velocities.
-         @param E0[] array E0[0:5], where E0[0]=a(km),E0[1]=e,E0[2]=i(ï¿½ï¿½ï¿½),E0[3]=w(ï¿½ï¿½ï¿½),E0[4]=ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½),E0[5]=ï¿½(ï¿½ï¿½ï¿½)
-         @param XL X coordinate of the Moon in km.
-         @returns double
-
-         */
+/**
+@brief Transformation of Kepler elements to coordinates and velocities.
+@param E0[] array E0[0:5], where
+E0[0]=a(km),E0[1]=e,E0[2]=i(ï¿½ï¿½ï¿½),E0[3]=w(ï¿½ï¿½ï¿½),E0[4]=ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½),E0[5]=ï¿½(ï¿½ï¿½ï¿½)
+@param XL X coordinate of the Moon in km.
+@returns double
+*/
 double JVC_DLL GHCK(double far E0[], double far EK[]) {
   double A, B, E, F1, F2, K1, K2, K3, K4, W, U;
   E = KEPLER(E0[5], E0[1]);
@@ -321,15 +321,12 @@ double JVC_DLL GHCK(double far E0[], double far EK[]) {
          ---------------------------------------------------------------- */
 
 /**
- * @brief A simple stub function to show how links do work.
- *
- * Links are generated automatically for webpages (like http://www.google.co.uk)
- * and for structures, like BoxStruct_struct. For typedef-ed types use
- * #BoxStruct.
- * For functions, automatic links are generated when the parenthesis () follow
- * the name of the function, like Box_The_Function_Name().
- * Alternatively, you can use #Box_The_Function_Name.
- * @return @c NULL is always returned.
+ * @brief Transformation of coordinates and velocities to nonsingular elements.
+ * @param  X array X[0:5], where X[0]=X(km),X[1]=Y(km),X[2]=Z(km),
+ * X[3]=Vx(km/c),X[4]=Vy(km/c),X[5]=Vz(km/c)
+ * @param  array E[0:5], ???  where E[0]=a(km), E[1]=,E[2]=,E[3]=,E[4]= ,E[5]=
+ * (ï¿½ï¿½ï¿½).
+ * @return double E1
  */
 
 double JVC_DLL XBL(double far X[], double far E[]) {
@@ -388,7 +385,14 @@ double JVC_DLL XBL(double far X[], double far E[]) {
      where EK[0]=a(km),EK[1]=e(km),EK[2]=i(rad),
      EK[3]=w(rad),EK[4]=W(rad),EK[5]=L(rad).
          ---------------------------------------------------------------- */
-
+/**
+ * @brief Transformation of nonsingular elements to Kepler elements.
+ * @param  E  array E[0:5], ???  where E[0]=a(km), E[1]=,E[2]=,E[3]=,E[4]=
+ * ,E[5]= (ï¿½ï¿½ï¿½).
+ * @param  E1 array EK[0:5], where
+ * EK[0]=a(km),EK[1]=e(km),EK[2]=i(rad),EK[3]=w(rad),EK[4]=W(rad),EK[5]=L(rad).
+ * @return double U
+ */
 ;
 double JVC_DLL LBK(double far E[], double far E1[]) {
   double EA, U;
@@ -442,6 +446,12 @@ double JVC_DLL LBK(double far E[], double far E1[]) {
          ---------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of sideral time.
+ * @param  D  days from 0h UTC Dec 31, 1957.
+ * @param  T0 current time from 0h UTC in days.
+ * @return double sideral time in radian.
+ */
 double JVC_DLL ST(int D, double T0) {
   double T1, A;
 #if defined(EPOCHA_IS_QUASINERTIAL)
@@ -479,6 +489,14 @@ double JVC_DLL ST(int D, double T0) {
          ---------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Transformation of Kepler elements to nonsingular elements.
+ * @param  E  array E[0:5], where
+ * EK[0]=a(km),EK[1]=e(km),EK[2]=i(rad),EK[3]=w(rad),EK[4]=W(rad),EK[5]=L(rad).
+ * @param  E1 array EK[0:5], ???  where E[0]=a(km), E[1]=,E[2]=,E[3]=,E[4]=
+ * ,E[5]= (ï¿½ï¿½ï¿½).
+ * @return A
+ */
 double JVC_DLL KBL(double far E[], double far E1[]) {
   double A;
   E1[0] = E[0];
@@ -519,6 +537,15 @@ double JVC_DLL KBL(double far E[], double far E1[]) {
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of slow-changing functions for taken into
+account perturbations of order two due to the second zonal
+garmonics, (see formula (1.3.4) Topic 5.2, Report 1). Call: C202(); It is used
+variables, declared as global: A(axis in km),E (eccentricity), SI(sin(I)), CI2
+(cos(I)),CI2(cos(I/2)), where I is inclination. Output data: static array
+KC[0:4,0:1].
+ * @return  void
+ */
 void JVC_DLL C202(void) {
   double
 
@@ -569,6 +596,13 @@ void JVC_DLL C202(void) {
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of function b =b*(a!/(k!*(a-k)!).
+ * @param  B
+ * @param  A
+ * @param  K
+ * @return   double result of function value calculation.
+ */
 double JVC_DLL BIN(double B, int A, int K) {
   double S;
   int I, A1;
@@ -608,6 +642,17 @@ double JVC_DLL BIN(double B, int A, int K) {
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of inclination function and its derivative.
+ * @param  L   [description]
+ * @param  M   [description]
+ * @param  P   [description]
+ * @param  S   sin(.5*i)
+ * @param  C   cos(.5*i)
+ * @param  FF1 value of inclination function.
+ * @param  FF2 derivative of inclination function.
+ * @return     void
+ */
 void JVC_DLL FINC(int L, int M, int P, double S, double C, double far *FF1,
                   double far *FF2) {
   int I, J, J1, J2, K, R, N, LM;
@@ -674,6 +719,16 @@ void JVC_DLL FINC(int L, int M, int P, double S, double C, double far *FF1,
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * [HANSEN description]
+ * @param  N  [description]
+ * @param  P  [description]
+ * @param  Q  [description]
+ * @param  E  [description]
+ * @param  A  [description]
+ * @param  A1 [description]
+ * @return    [description]
+ */
 void JVC_DLL HANSEN(int N, int P, int Q, double E, double far *A,
                     double far *A1) {
   int S, K, M;
@@ -762,6 +817,14 @@ void JVC_DLL HANSEN(int N, int P, int Q, double E, double far *A,
 }
 /*########################## ï¿½ï¿½ï¿½ï¿½ï¿½ HANSEN ###########################*/
 /*########################## ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ XNEWC1 ###########################*/
+/**
+ * @brief Calculation of Hansen function.
+ * @param  n eccentricity
+ * @param  m eccentricity
+ * @param  k eccentricity
+ * @param  E eccentricity
+ * @return   double value of Hansen function.
+ */
 double JVC_DLL XNEWC1(int n, int m, int k, double E) {
   /*      double XNEWC1(N,M,K,E,X) */
   double far *ars, far *y, far *z, far *w, X, hk, e2, pk1, pk2, pn2, pkn, anm,
@@ -894,6 +957,11 @@ double JVC_DLL XNEWC1(int n, int m, int k, double E) {
    ------------------------------------------------------------------- */
 
 ;
+/**
+ * Calculation of slow-changing functions for taken into account perturbations
+ * due to the zonal garmonics.
+ * @return  [description]
+ */
 void JVC_DLL QPRT(void) {
 
   int I0, K, K1, K2, M, N, N1, A1, A3, J, L;
@@ -1185,10 +1253,21 @@ AD[1:38] - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of atmosphere density value without bulge.
+ * @param  H1  altitude in km.
+ * @param  F81 weighting-averaged value of solar activity index for preceding 81
+ * days.
+ * @param  F    daily averaged values of solar activity index.
+ * @param  F0  model's fixed level of solar activity index
+ * @param  KP  daily averaged planetary index of geomagnetic activity.
+ * @param  T0  time in days count of from 0h UTC Dec 31 1957.
+ * @return    double atmospheric density value in kg(m*m*km)
+ */
 double JVC_DLL ATM(double H1, double F81, double F, int F0, double KP,
                    double T0)
-//		; double ATM(double H1,double F81,double F,int F0,double KP,double
-//T0)
+//		; double ATM(double H1,double F81,double F,int F0,double
+// KP,double  T0)
 {
   double DJ1;
   double E, E1, E2, E3, E4, E7, E8, E9;
@@ -1527,6 +1606,11 @@ int MF0[6]={75,100,125,150,200,250} ;
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of Bessel function I0.
+ * @param  X
+ * @return   double value of Bessel function I0.
+ */
 double JVC_DLL I0(double X)
 //        ;  double I0(double X)
 {
@@ -1590,6 +1674,11 @@ double JVC_DLL I0(double X)
   ------------------------------------------------------------------- */
 
 ;
+/**
+ * @brief Calculation of Bessel function I1.
+ * @param  X
+ * @return   double value of Bessel function I1.
+ */
 double JVC_DLL I1(double X)
 //        ;  double I1(double X)
 {
@@ -1674,6 +1763,14 @@ double JVC_DLL I1(double X)
    ------------------------------------------------------------------- */
 
 ;
+/**
+ * Calculation of slow-changing functions for taken into account pertubations
+ * due to atmospheric drag.
+ * @param  H  scale height.
+ * @param  B1
+ * @param  B2
+ * @return    void
+ */
 void JVC_DLL KATM(double H, double B1, double B2)
 //         ;void  KATM(double H,double B1,double B2)
 {
@@ -1835,6 +1932,14 @@ void JVC_DLL KATM(double H, double B1, double B2)
 /*########################## ï¿½ï¿½ï¿½ï¿½ï¿½ KATM ###########################*/
 /*########################## ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ F107kp ###########################*/
 ;
+/**
+ * @brief do nothing.
+ * @param  t    [description]
+ * @param  f107 [description]
+ * @param  f81  [description]
+ * @param  kp   [description]
+ * @return      always -1.
+ */
 int JVC_DLL F107KP(double t, double *f107, double *f81, double *kp)
 //		;  int F107KP(double t,double *f107,double *f81,double *kp)
 {
