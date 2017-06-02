@@ -38,9 +38,22 @@ int JVC_DLL chisint(double *x, double *V, double tI, double tF, double xL,
 // int chisint(double *x,double *V,double tI,double tF,double xL,int LL,int
 // NV,int NI,int *NF,int *NS,int klass,int NoR,int pr);
 int XAXA = 0, NZ, MTS, MTS1, NTS, Nya, MI1, Nm = LMAX + 2;
-double ym, ReFL, SS, SWW, far *C, far *SS2, far *Wm, far *Vm, far *H_rada,
-    far *W_rada, far *U_rada, far *C_rada, far *D_rada, far *R_rada,
-    far *XI_rada, far *F1_rada, far *FJ_rada, far *Y_rada, far *Z_rada;
+double ym, ReFL, SS, SWW;
+double far *C;
+double far *SS2;
+double far *Wm;
+double far *Vm;
+double far *H_rada;
+double far *W_rada;
+double far *U_rada;
+double far *C_rada;
+double far *D_rada;
+double far *R_rada;
+double far *XI_rada;
+double far *F1_rada;
+double far *FJ_rada;
+double far *Y_rada;
+double far *Z_rada;
 /**
  * @brief   no description available.
  * @param  NTOCH no description available.

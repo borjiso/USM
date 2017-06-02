@@ -40,19 +40,35 @@ extern double F135, FT, KP, KB0, AX, EX, IX, AG, EG, IG
     ;
 
 #if BOKO
-extern double far *HL, far *DL, far *D2L, far *HL0, far *HL1, far *HL2,
-    far *HL3, far *HL4, far *DC, far *D2C, far *HC, far *HC0, far *HC1,
-    far *HC2, far *HC3, far *HC4, far *LE /* LE[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LI /* LI[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LV /* LV[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LPI /* LPI[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LLAM /*LLAM[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *QC, far *QD, far *PC, far *PD, far *RC, far *RD, far *TC, far *TD;
+extern double far *HL;
+extern double far *DL;
+extern double far *D2L;
+extern double far *HL0;
+extern double far *HL1;
+extern double far *HL2;
+extern double far *HL3;
+extern double far *HL4;
+extern double far *DC;
+extern double far *D2C;
+extern double far *HC;
+extern double far *HC0;
+extern double far *HC1;
+extern double far *HC2;
+extern double far *HC3;
+extern double far *HC4;
+extern double far *LE; /* LE[LLUN-1][LLUN+1][LLUN+1]*/
+extern double far *LI; /* LI[LLUN-1][LLUN+1][LLUN+1]*/
+extern double far *LV; /* LV[LLUN-1][LLUN+1][LLUN+1]*/
+extern double far *LPI;/* LPI[LLUN-1][LLUN+1][LLUN+1]*/
+extern double far *LLAM;/*LLAM[LLUN-1][LLUN+1][LLUN+1]*/
+extern double far *QC;
+extern double far *QD;
+extern double far *PC;
+extern double far *PD;
+extern double far *RC;
+extern double far *RD;
+extern double far *TC;
+extern double far *TD;
 #endif
 
 extern double QQ[LMAX - 1], PP[LMAX - 1], RR[LMAX - 1], TT[LMAX - 1]

@@ -19,21 +19,35 @@ extern double
     A,
     E, I, SI, CI, SI2, CI2, CE, SE, EA, IA, CIA, SIA, DT0;
 
-double far *HL, far *DL, far *D2L, far *HL0, far *HL1, far *HL2, far *HL3,
-    far *HL4, far *DC, far *D2C, far *HC, far *HC0, far *HC1, far *HC2,
-    far *HC3, far *HC4, far *LE /* LE[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LI /* LI[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LV /* LV[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LPI /* LPI[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *LLAM /*LLAM[LLUN-1][LLUN+1][LLUN+1]*/
-    ,
-    far *QC, far *QD, far *PC, far *PD, far *RC, far *RD, far *TC, far *TD
-
-    ;
+     double far *HL;
+     double far *DL;
+     double far *D2L;
+     double far *HL0;
+     double far *HL1;
+     double far *HL2;
+     double far *HL3;
+     double far *HL4;
+     double far *DC;
+     double far *D2C;
+     double far *HC;
+     double far *HC0;
+     double far *HC1;
+     double far *HC2;
+     double far *HC3;
+     double far *HC4;
+     double far *LE; /* LE[LLUN-1][LLUN+1][LLUN+1]*/
+     double far *LI; /* LI[LLUN-1][LLUN+1][LLUN+1]*/
+     double far *LV; /* LV[LLUN-1][LLUN+1][LLUN+1]*/
+     double far *LPI;/* LPI[LLUN-1][LLUN+1][LLUN+1]*/
+     double far *LLAM;/*LLAM[LLUN-1][LLUN+1][LLUN+1]*/
+     double far *QC;
+     double far *QD;
+     double far *PC;
+     double far *PD;
+     double far *RC;
+     double far *RD;
+     double far *TC;
+     double far *TD;
 
 double
 

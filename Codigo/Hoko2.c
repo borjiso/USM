@@ -19,10 +19,23 @@ extern double
 
 extern double AX, EX, IX
 #if BOKO
-    ,
-    far *HL, far *DL, far *D2L, far *HL0, far *HL1, far *HL2, far *HL3,
-    far *HL4, far *DC, far *D2C, far *HC, far *HC0, far *HC1, far *HC2,
-    far *HC3, far *HC4
+    ;
+double far *HL;
+double far *DL;
+double far *D2L;
+double far *HL0;
+double far *HL1;
+double far *HL2;
+double far *HL3;
+double far *HL4;
+double far *DC;
+double far *D2C;
+double far *HC;
+double far *HC0;
+double far *HC1;
+double far *HC2;
+double far *HC3;
+double far *HC4
 #endif
 
     ;
@@ -166,7 +179,7 @@ void FINC2(int L2) {
 /**
  * Calculation of short periodical perturbations.
  * @param  PKP is option for calculation of short periodical perturbations
-						at initial or final points.
+                                                at initial or final points.
  * @param  EBX EBX[0:5] is vector of nonsingular elements.
  * @param  T   is the time counted off from 0h UTC Dec 31 1957.
  * @param  E1  E1[0:5] is vector of short periodical perturbations
@@ -350,7 +363,7 @@ int JVC_DLL SKP(int PKP, double far EBX[], double T, double far E1[]) {
     G2 = CM * C20;
     FF1 = Z * Z
         //			    ;
-        //E1[0]=A*K1*CM*(1-K1*CM-0.75*G2*(3*Z-2)*H3*H1)-1.5*CM*G2*A*(4-5*Z)*Z*K2*G1*H1-3.0/64.0*G2*G2*A*G1*
+        // E1[0]=A*K1*CM*(1-K1*CM-0.75*G2*(3*Z-2)*H3*H1)-1.5*CM*G2*A*(4-5*Z)*Z*K2*G1*H1-3.0/64.0*G2*G2*A*G1*
         //       H3*H1*((-8+8*Z+5*FF1)*H2*H2+4*(4-12*Z+9*FF1)*H2-5*(-8+16*Z-7*FF1)+2*(-14*Z+15*FF1)*E*E*N7)
         ;
     F1 = CM * (0.5 * K1 * H2 * H2 + Z * K2) / E;
@@ -751,12 +764,12 @@ int JVC_DLL SKP(int PKP, double far EBX[], double T, double far E1[]) {
                   K2 = K2 * K5 + N2 * N5;
                   K3 = K3 * K5 + N3 * N5
                       //								;
-                      //E1[0]+=2*A*K1
+                      // E1[0]+=2*A*K1
                       ;
                   E1[0] += 2 * A * K1 * S / dS;
                   if (abs(Q) <= 8)
                   //								   {
-                  //F1=H2*(H2+(2.0*P-L)/dS)/E*K1
+                  // F1=H2*(H2+(2.0*P-L)/dS)/E*K1
                   {
                     F1 = H2 * (H2 * S / dS + (2.0 * P - L) / dS) / E * K1;
                     F2 = -(H2 * K2 + E * TI2 * K3 / H2) / dS;
@@ -767,7 +780,7 @@ int JVC_DLL SKP(int PKP, double far EBX[], double T, double far E1[]) {
                     E1[3] += (CI2 * K8 * F1 - K9 * F2);
                     E1[4] += (CI2 * K9 * F1 + K8 * F2)
                         //								      ;
-                        //E1[5]-=((H2+E*E-1)/E*K2+TI2/H2*K3-(2*L+3)*K0)/dS
+                        // E1[5]-=((H2+E*E-1)/E*K2+TI2/H2*K3-(2*L+3)*K0)/dS
                         ;
                     E1[5] -= ((H2 + E * E - 1) / E * K2 + TI2 / H2 * K3 -
                               (2 * L + 3 * S / dS) * K0) /
