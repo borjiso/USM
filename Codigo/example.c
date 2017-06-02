@@ -288,10 +288,10 @@ double arg_lat(double e, double M, double g){
 	do{
 		En1 = En-(f_prima(e,En,M)/f(e,En,M));
 	}while(abs(En1-En)<10E-12);
-	double tgf = sqrt((1+e)/(1-e)*tan(En1/2));
-	double f = atan(tgf)*2;
-	zeta = f+g;
-	return zeta;
+		double tgf = sqrt((1+e)/(1-e)*tan(En1/2));
+		double f = atan(tgf)*2;
+		zeta = f+g;
+		return zeta;
 }
 
 double f(double e, double E, double M){
@@ -321,7 +321,7 @@ int get_elset_input(char * filename_in,
 		    int * output_type){
 	printf("Abriendo fichero...\n");
 	FILE *fe = fopen(filename_in, "r");
-printf("Fichero abierto.\n");
+	printf("Fichero abierto.\n");
   char cadena[100];
   double *dato = 0;
   if(fe==NULL){
