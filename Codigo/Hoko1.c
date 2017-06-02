@@ -1,3 +1,8 @@
+/**
+ * @file Hoko1.c
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #include "hoko.h"
 int LM = 2, LT = 0, LKL = ((LLUN + 1) * (LLUN + 2) - 6),
     LKS = ((LSUN + 1) * (LSUN + 2) - 6), JREZ[MAXREZ], L, M, PSUNDAB = 0,

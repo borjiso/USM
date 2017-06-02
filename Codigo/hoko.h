@@ -1,3 +1,8 @@
+/**
+ * @file hoko.h
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #ifndef HOKO_H
 #define HOKO_H
 #include <stdio.h>

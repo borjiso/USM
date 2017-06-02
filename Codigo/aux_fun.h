@@ -1,3 +1,8 @@
+/**
+ * @file aux_fun.h
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 /**************************************************
  * This header file contains auxiliary routine
  * prototypes for functions needed in order to make
@@ -19,8 +24,8 @@
  * This algorithm has not yet been checked.
  *******************************************************/
 
-double arg_lat(double eccentricity_in, 
-	       double mean_anomaly_in, 
+double arg_lat(double eccentricity_in,
+	       double mean_anomaly_in,
 	       double arg_perigee_in);
 
 /********************************************************
@@ -30,10 +35,10 @@ double arg_lat(double eccentricity_in,
  *            int * epoch_in - Modified Julian Day.
  *            int * object_in - object number.
  *            int * rev_num_in - revolution number.
- *            double * step_size_in_days - fraction of a 
+ *            double * step_size_in_days - fraction of a
  *                                         day to make each
  *                                         step.
- *            int * number_of_steps - number of steps to 
+ *            int * number_of_steps - number of steps to
  *                                    propagate for.
  *            double * semimajor_axis_earth_radii.
  *            double * inclination_deg.
@@ -43,10 +48,10 @@ double arg_lat(double eccentricity_in,
  *            double * mean_anomaly_deg.
  *            double * ballistic_coef.
  *            int    * prmodel. - This is the model switch
- *                                passed to the bxprog 
+ *                                passed to the bxprog
  *                                structure passed to PROGNOZ.
  *                                (see bxprog structure)
- *            int    * pock. - This is the in/out type switch 
+ *            int    * pock. - This is the in/out type switch
  *                             passed to the bxprog structure
  *                             passed to PROGNOZ.  (see bxprog
  *                             structure)

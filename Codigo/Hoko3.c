@@ -1,3 +1,8 @@
+/**
+ * @file Hoko3.c
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #define PECHAT 0
 #include "hoko.h"
 //#include <graphics.h>                   0

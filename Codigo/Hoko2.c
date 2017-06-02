@@ -1,3 +1,8 @@
+/**
+ * @file Hoko2.c
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #include "hoko.h"
 
 FILE far *MAEIKP, far *MULTIINDEX;

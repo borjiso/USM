@@ -1,4 +1,8 @@
-
+/**
+ * @file example.c
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #include "hoko.h"
 #include <math.h>
 #include "aux_fun.h"

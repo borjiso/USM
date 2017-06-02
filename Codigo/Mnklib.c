@@ -1,3 +1,8 @@
+/**
+ * @file Mnklib.c
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #include "hoko.h"
 //#include "GeoForb.h"
 //#include <dos.h>
