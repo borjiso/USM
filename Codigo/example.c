@@ -1,3 +1,8 @@
+/**
+ * @file example.c
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #include "hoko.h"
 #include <math.h>
 #include "aux_fun.h"
@@ -20,11 +25,11 @@ int main (void)
   struct bxprog BX;
   struct bixprog * BIX;
   double * TKNK;
-  double epoch_in, inclination_deg, ra_asc_node_deg,
-    eccentricity, arg_perigee_deg, mean_anomaly_deg,
-    semimajor_axis_earth_radii, deg2rad, rad2deg, nu, snu, cnu, ballistic_coef;
-  int prmodel, pock, pzdachi;
-  int object_in, rev_num_in, I,J,i,j;
+  double epoch_in =0, inclination_deg=0, ra_asc_node_deg=0,
+    eccentricity=0, arg_perigee_deg=0, mean_anomaly_deg=0,
+    semimajor_axis_earth_radii=0, deg2rad=0, rad2deg=0, nu=0, snu=0, cnu=0, ballistic_coef=0;
+  int prmodel=0, pock=0, pzdachi=0;
+  int object_in=0, rev_num_in=0, I,J,i,j;
   char input_file[256];
   int NUM_STEPS_TO_PROPAGATE;
   double STEP_SIZE_IN_DAYS;
@@ -36,7 +41,6 @@ int main (void)
   /* Read the data from the input.txt file. */
 printf("1.\n");
   snprintf(input_file, 256, "%s", "usm_input.txt");
-
   if (get_elset_input(input_file,
 		      &epoch_in,
 		      &object_in,
@@ -58,22 +62,22 @@ printf("1.\n");
       printf("Error reading input from %s.\n",input_file);
       return 1;
     }
-      epoch_in = 51726;
-      object_in= 1;
-      rev_num_in= 1;
-      STEP_SIZE_IN_DAYS= .5;
-      NUM_STEPS_TO_PROPAGATE= 1460;
-      semimajor_axis_earth_radii= 42163.393;
-      inclination_deg= 63.435;
-      ra_asc_node_deg= 285.0;
-      eccentricity= .2684;
-      arg_perigee_deg= 270.0;
-      mean_anomaly_deg= 344.0;
-      ballistic_coef= 0;
-      output_type = 2;
-      pzdachi = 0;
-      pock = -2;
-
+	printf("epoch_in: %lf\n",epoch_in);
+	printf("object_in: %d\n",object_in);
+	printf("rev_num_in: %d\n",rev_num_in);
+	printf("STEP_SIZE_IN_DAYS: %lf\n",STEP_SIZE_IN_DAYS);
+	printf("NUM_STEPS_TO_PROPAGATE: %d\n",NUM_STEPS_TO_PROPAGATE);
+	printf("semimajor_axis_earth_radii: %lf\n",semimajor_axis_earth_radii);
+	printf("inclination_deg: %lf\n",inclination_deg);
+	printf("ra_asc_node_deg: %lf\n",ra_asc_node_deg);
+	printf("eccentricity: %lf\n",eccentricity);
+	printf("arg_perigee_deg: %lf\n",arg_perigee_deg);
+	printf("mean_anomaly_deg: %lf\n",mean_anomaly_deg);
+	printf("ballistic_coef: %d\n",ballistic_coef);
+	printf("pock: %d\n",pock);
+	printf("pzdachi: %d\n",pzdachi);
+	printf("output_type: %d\n",output_type);
+	printf("prmodel: %d\n",prmodel);
 
   /* Allocate memory for the TKNK and BIX arrays. */
   if ((TKNK = (double *) calloc(NUM_STEPS_TO_PROPAGATE, sizeof(double))) == NULL)
@@ -321,46 +325,72 @@ int get_elset_input(char * filename_in,
 		    int * output_type){
 	printf("Abriendo fichero...\n");
 	FILE *fe = fopen(filename_in, "r");
+<<<<<<< HEAD
 	printf("Fichero abierto.\n");
   char cadena[100];
   double *dato = 0;
+=======
+printf("Fichero abierto.\n");
+>>>>>>> master
   if(fe==NULL){
     return 1;
   }else{
+	int x;
 	printf("Obteniendo datos...\n");
-	fscanf(fe, "epoch_in %lf", epoch_in);
-  printf("una lectura\n");
-	fscanf(fe, "object_in %d", object_in);
-  printf("una lectura\n");
-	fscanf(fe, "rev_num_in %d", rev_num_in);
-  printf("una lectura\n");
-	fscanf(fe, "step_size_in_days %lf", step_size_in_days);
-  printf("una lectura\n");
-	fscanf(fe, "number_of_steps %d", number_of_steps);
-  printf("una lectura\n");
-	fscanf(fe, "semimajor_axis_km %lf", semimajor_axis_earth_radii);
-  printf("una lectura\n");
-	fscanf(fe, "inclination_deg %lf", inclination_deg);
-  printf("una lectura\n");
-	fscanf(fe, "ra_asc_node_deg %lf", ra_asc_node_deg);
-  printf("una lectura\n");
-	fscanf(fe, "eccentricity %lf", eccentricity);
-  printf("una lectura\n");
-	fscanf(fe, "arg_perigee_deg %lf", arg_perigee_deg);
-  printf("una lectura\n");
-	fscanf(fe, "mean_anomaly_deg %lf", mean_anomaly_deg);
-  printf("una lectura\n");
-	fscanf(fe, "ballistic_coef %lf", ballistic_coef);
-  printf("una lectura\n");
-	fscanf(fe, "pock %d", pock);
-  printf("una lectura\n");
-	fscanf(fe, "pzadachi %d", pzadachi);
-  printf("una lectura\n");
-	fscanf(fe, "output_type %d", output_type);
-  printf("una lectura\n");
-	fscanf(fe, "prmodel %d", prmodel);
-  printf("una lectura\n");
+	//fscanf(fe, " epoch_in = %ld", epoch_in);
+	//if(x == 0){return 1;}
+ 	//printf("1 lectura\n");
+	x = fscanf(fe, " object_in = %d", object_in);
+	if(x == 0){return 1;}
+  	printf("2 lectura\n");
+	x = fscanf(fe, " rev_num_in = %d", rev_num_in);
+	if(x == 0){return 1;}
+  	printf("3 lectura\n");
+	x = fscanf(fe, " step_size_in_days = %lf", step_size_in_days);
+	if(x == 0){return 1;}
+  	printf("4 lectura\n");
+	x = fscanf(fe, " number_of_steps = %d", number_of_steps);
+	if(x == 0){return 1;}
+  	printf("5 lectura\n");
+	x = fscanf(fe, " semimajor_axis_km = %lf", 		semimajor_axis_earth_radii);
+	if(x == 0){return 1;}
+  	printf("6 lectura\n");
+	x = fscanf(fe, " inclination_deg = %lf", inclination_deg);
+	if(x == 0){return 1;}
+  	printf("7 lectura\n");
+	x = fscanf(fe, " ra_asc_node_deg = %lf", ra_asc_node_deg);
+	if(x == 0){return 1;}
+ 	printf("8 lectura\n");
+	x = fscanf(fe, " eccentricity = %lf", eccentricity);
+	if(x == 0){return 1;}
+  	printf("9 lectura\n");
+	x = fscanf(fe, " arg_perigee_deg = %lf", arg_perigee_deg);
+	if(x == 0){return 1;}
+ 	printf("10 lectura\n");
+	x = fscanf(fe, " mean_anomaly_deg = %lf", mean_anomaly_deg);
+	if(x == 0){return 1;}
+  	printf("11 lectura\n");
+	x = fscanf(fe, " ballistic_coef = %lf", ballistic_coef);
+	if(x == 0){return 1;}
+ 	printf("12 lectura\n");
+	x = fscanf(fe, " pock = %d", pock);
+	if(x == 0){return 1;}
+  	printf("13 lectura\n");
+	x = fscanf(fe, " pzadachi = %d", pzadachi);
+	if(x == 0){return 1;}
+ 	printf("14 lectura\n");
+	x = fscanf(fe, " output_type = %d", output_type);
+	if(x == 0){return 1;}
+	printf("15 lectura\n");
+	x = fscanf(fe, " prmodel = %d", prmodel);
+	if(x == 0){return 1;}
+ 	printf("16 lectura\n");
+	fscanf(fe, " epoch_in = %lf", epoch_in);
+	if(x == 0){return 1;}
+ 	printf("1 lectura\n");
+	printf("antes\n");
 	if(fe !=NULL){
+		printf("cierra\n");
 		fclose(fe);
 	}
  return 0;

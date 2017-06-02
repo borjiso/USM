@@ -1,3 +1,8 @@
+/**
+ * @file hoko.h
+ * @author Borja Jimeno Soto
+ * @date 2/06/2017
+ */
 #ifndef HOKO_H
 #define HOKO_H
 #include <stdio.h>
@@ -121,7 +126,7 @@ extern "C"
 #else
  #define JVC_DLL
 #endif
-      ; bool   JVC_DLL demo(int i)
+      ; bool   JVC_DLL (int i)
       ; int    JVC_DLL sign(double X)
 	  ; double JVC_DLL KEPLER(double M,double EKC)
 	  ; void   JVC_DLL ALFDEL(double T,double far *ALF,double far *DEL)
@@ -157,8 +162,8 @@ extern "C"
 	  ; void   JVC_DLL track(int NT, double T)
       ; int    JVC_DLL F107KP(double t,double *f107,double *f81,double *kp)
 	  ; void   JVC_DLL close_prognoz(void)
-      ; void   JVC_DLL SHADOW(double al,double del,double AP,double DBY,double *E1/*вход*/,double *E2/*выход*/,double *S,double *T,double *W)
-// -ЁюЎхфєЁ_ ¦--
+      ; void   JVC_DLL SHADOW(double al,double del,double AP,double DBY,double *E1/*пїЅпїЅпїЅпїЅ*/,double *E2/*пїЅпїЅпїЅпїЅпїЅ*/,double *S,double *T,double *W)
+// -пїЅпїЅпїЅпїЅпїЅпїЅпїЅ_ пїЅ--
       ; void   JVC_DLL error_print(char *s)
       ; void   JVC_DLL task_exit(int pech)
       ; int    JVC_DLL obmatr(double *az,int jaz,int n,double *a ,int ja )
