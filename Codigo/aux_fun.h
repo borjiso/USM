@@ -24,9 +24,8 @@
  * This algorithm has not yet been checked.
  *******************************************************/
 
-double arg_lat(double eccentricity_in,
-	       double mean_anomaly_in,
-	       double arg_perigee_in);
+double arg_lat(double eccentricity_in, double mean_anomaly_in,
+               double arg_perigee_in);
 
 /********************************************************
  * function get_elset_input
@@ -62,22 +61,28 @@ double arg_lat(double eccentricity_in,
  * output:    1 if error, 0 if success.
  *********************************************************/
 
-int get_elset_input(char * filename_in,
-		    double * epoch_in,
-		    int * object_in,
-		    int * rev_num_in,
-		    double * step_size_in_days,
-		    int * number_of_steps,
-		    double * semimajor_axis_earth_radii,
-		    double * inclination_deg,
-		    double * ra_asc_node_deg,
-		    double * eccentricity,
-		    double * arg_perigee_deg,
-		    double * mean_anomaly_deg,
-		    double * ballistic_coef,
-		    int * prmodel,
-		    int * pock,
-		    int * pzadachi,
-		    int * output_type);
+int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
+                    int *rev_num_in, double *step_size_in_days,
+                    int *number_of_steps, double *semimajor_axis_earth_radii,
+                    double *inclination_deg, double *ra_asc_node_deg,
+                    double *eccentricity, double *arg_perigee_deg,
+                    double *mean_anomaly_deg, double *ballistic_coef,
+                    int *prmodel, int *pock, int *pzadachi, int *output_type);
 double f(double e, double E, double M);
 double f_prima(double e, double E, double M);
+
+void get_input(double *epoch_in, int *object_in, int *rev_num_in,
+               double *step_size_in_days, int *number_of_steps,
+               double *semimajor_axis_earth_radii, double *inclination_deg,
+               double *ra_asc_node_deg, double *eccentricity,
+               double *arg_perigee_deg, double *mean_anomaly_deg,
+               double *ballistic_coef, int *prmodel, int *pock, int *pzadachi,
+               int *output_type);
+
+int do_work(double *epoch_in, int *object_in, int *rev_num_in,
+            double *step_size_in_days, int *number_of_steps,
+            double *semimajor_axis_earth_radii, double *inclination_deg,
+            double *ra_asc_node_deg, double *eccentricity,
+            double *arg_perigee_deg, double *mean_anomaly_deg,
+            double *ballistic_coef, int *prmodel, int *pock, int *pzadachi,
+            int *output_type);
