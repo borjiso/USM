@@ -96,10 +96,9 @@ int main(void) {
                    double &semimajor_axis_earth_radii, double &inclination_deg,
                    double &ra_asc_node_deg, double &eccentricity,
                    double &arg_perigee_deg, double &mean_anomaly_deg,
-                   double &ballistic_coef, int &prmodel, int &pock, int &pzadachi,
-                   int &output_type);
+                   double &ballistic_coef, int &prmodel, int &pock,
+                   int &pzadachi, int &output_type);
   }
-
 }
 int do_work(double &epoch_in, int &object_in, int &rev_num_in,
             double &step_size_in_days, int &number_of_steps,
@@ -336,16 +335,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
   } else {
     int x;
 
-    printf("Obteniendo datos...\n");
-
     printf("Obteniendo datos");
 
     x = fscanf(fe, " object_in = %d", object_in);
     if (x == 0) {
       return 1;
     }
-
-    printf("2 lectura\n");
 
     printf(".");
 
@@ -354,16 +349,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("3 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " step_size_in_days = %lf", step_size_in_days);
     if (x == 0) {
       return 1;
     }
-
-    printf("4 lectura\n");
 
     printf(".");
 
@@ -372,16 +363,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("5 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " semimajor_axis_km = %lf", semimajor_axis_earth_radii);
     if (x == 0) {
       return 1;
     }
-
-    printf("6 lectura\n");
 
     printf(".");
 
@@ -390,16 +377,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("7 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " ra_asc_node_deg = %lf", ra_asc_node_deg);
     if (x == 0) {
       return 1;
     }
-
-    printf("8 lectura\n");
 
     printf(".");
 
@@ -408,16 +391,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("9 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " arg_perigee_deg = %lf", arg_perigee_deg);
     if (x == 0) {
       return 1;
     }
-
-    printf("10 lectura\n");
 
     printf(".");
 
@@ -426,16 +405,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("11 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " ballistic_coef = %lf", ballistic_coef);
     if (x == 0) {
       return 1;
     }
-
-    printf("12 lectura\n");
 
     printf(".");
 
@@ -444,16 +419,12 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("13 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " pzadachi = %d", pzadachi);
     if (x == 0) {
       return 1;
     }
-
-    printf("14 lectura\n");
 
     printf(".");
 
@@ -462,8 +433,6 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("15 lectura\n");
-
     printf(".");
 
     x = fscanf(fe, " prmodel = %d", prmodel);
@@ -471,21 +440,16 @@ int get_elset_input(char *filename_in, double *epoch_in, int *object_in,
       return 1;
     }
 
-    printf("16 lectura\n");
-
     printf(".");
 
     fscanf(fe, " epoch_in = %lf", epoch_in);
     if (x == 0) {
       return 1;
     }
+    printf("./n");
 
-    printf("1 lectura\n");
-    printf("antes\n");
     if (fe != NULL) {
-      printf("cierra\n");
 
-      printf("./n");
       if (fe != NULL) {
 
         fclose(fe);
