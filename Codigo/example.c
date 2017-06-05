@@ -17,10 +17,7 @@ extern int Yes_return;
 #define KEPLER_MEAN_OUTPUT 3
 #define KEPLER_OSC_OUTPUT 4
 
-int main(void) {
-  printf("Empiezo.\n");
-
-  int int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[]) {
 
     int L, NTOCH;
     double MIZ[6];
