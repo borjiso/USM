@@ -19,91 +19,87 @@ extern int Yes_return;
 
 int main(int argc, char const *argv[]) {
 
-    int L, NTOCH;
-    double MIZ[6];
-    struct bxprog BX;
-    struct bixprog *BIX;
-    double *TKNK;
-    double epoch_in = 0, inclination_deg = 0, ra_asc_node_deg = 0,
-           eccentricity = 0, arg_perigee_deg = 0, mean_anomaly_deg = 0,
-           semimajor_axis_earth_radii = 0, deg2rad = 0, rad2deg = 0, nu = 0,
-           snu = 0, cnu = 0, ballistic_coef = 0;
-    int prmodel = 0, pock = 0, pzdachi = 0;
-    int object_in = 0, rev_num_in = 0, I, J, i, j;
-    char input_file[256];
-    char option[10];
-    int NUM_STEPS_TO_PROPAGATE;
-    double STEP_SIZE_IN_DAYS;
-    int output_type;
-    rad2deg = 180 / EXAMPLE_PI;
-    deg2rad = EXAMPLE_PI / 180;
+  int L, NTOCH;
+  double MIZ[6];
+  struct bxprog BX;
+  struct bixprog *BIX;
+  double *TKNK;
+  double epoch_in = 0, inclination_deg = 0, ra_asc_node_deg = 0,
+         eccentricity = 0, arg_perigee_deg = 0, mean_anomaly_deg = 0,
+         semimajor_axis_earth_radii = 0, deg2rad = 0, rad2deg = 0, nu = 0,
+         snu = 0, cnu = 0, ballistic_coef = 0;
+  int prmodel = 0, pock = 0, pzdachi = 0;
+  int object_in = 0, rev_num_in = 0, I, J, i, j;
+  char input_file[256];
+  char option[10];
+  int NUM_STEPS_TO_PROPAGATE;
+  double STEP_SIZE_IN_DAYS;
+  int output_type;
+  rad2deg = 180 / EXAMPLE_PI;
+  deg2rad = EXAMPLE_PI / 180;
 
-    /* Read the data from the input file. */
-    printf("1.\n");
-    snprintf(input_file, 256, "%s", "usm_input.txt");
+  /* Read the data from the input file. */
+  snprintf(input_file, 256, "%s", "usm_input.txt");
 
-    if (argc < 2) {
-      printf("Introduce a file name:\n");
-      scanf("%s", input_file);
-    } else {
-      input_file = argv[1];
-    }
-
-    if (get_elset_input(input_file, &epoch_in, &object_in, &rev_num_in,
-                        &STEP_SIZE_IN_DAYS, &NUM_STEPS_TO_PROPAGATE,
-                        &semimajor_axis_earth_radii, &inclination_deg,
-                        &ra_asc_node_deg, &eccentricity, &arg_perigee_deg,
-                        &mean_anomaly_deg, &ballistic_coef, &prmodel, &pock,
-                        &pzdachi, &output_type) == 1) {
-      printf("Error reading input from %s.\n", input_file);
-
-    } else {
-      printf("epoch_in: %lf\n", epoch_in);
-      printf("object_in: %d\n", object_in);
-      printf("rev_num_in: %d\n", rev_num_in);
-      printf("STEP_SIZE_IN_DAYS: %lf\n", STEP_SIZE_IN_DAYS);
-      printf("NUM_STEPS_TO_PROPAGATE: %d\n", NUM_STEPS_TO_PROPAGATE);
-      printf("semimajor_axis_earth_radii: %lf\n", semimajor_axis_earth_radii);
-      printf("inclination_deg: %lf\n", inclination_deg);
-      printf("ra_asc_node_deg: %lf\n", ra_asc_node_deg);
-      printf("eccentricity: %lf\n", eccentricity);
-      printf("arg_perigee_deg: %lf\n", arg_perigee_deg);
-      printf("mean_anomaly_deg: %lf\n", mean_anomaly_deg);
-      printf("ballistic_coef: %d\n", ballistic_coef);
-      printf("pock: %d\n", pock);
-      printf("pzdachi: %d\n", pzdachi);
-      printf("output_type: %d\n", output_type);
-      printf("prmodel: %d\n", prmodel);
-      printf("Press Y to read data from keyboard or another one to close the "
-             "program.\n");
-      scanf("%s", option);
-      if (option == "y") {
-        get_input(&epoch_in, &object_in, &rev_num_in, &STEP_SIZE_IN_DAYS,
-                  &NUM_STEPS_TO_PROPAGATE, &semimajor_axis_earth_radii,
-                  &inclination_deg, &ra_asc_node_deg, &eccentricity,
-                  &arg_perigee_deg, &mean_anomaly_deg, &ballistic_coef,
-                  &prmodel, &pock, &pzdachi, &output_type)
-      } else {
-        printf("Error reading data.\n");
-        return 1;
-      }
-    }
-    return do_work(double &epoch_in, int &object_in, int &rev_num_in,
-                   double &step_size_in_days, int &number_of_steps,
-                   double &semimajor_axis_earth_radii, double &inclination_deg,
-                   double &ra_asc_node_deg, double &eccentricity,
-                   double &arg_perigee_deg, double &mean_anomaly_deg,
-                   double &ballistic_coef, int &prmodel, int &pock,
-                   int &pzadachi, int &output_type);
+  if (argc < 2) {
+    printf("Introduce a file name:\n");
+    scanf("%s", input_file);
+  } else {
+    snprintf(input_file, 256, "%s", argv[1]);
   }
+
+  if (get_elset_input(input_file, &epoch_in, &object_in, &rev_num_in,
+                      &STEP_SIZE_IN_DAYS, &NUM_STEPS_TO_PROPAGATE,
+                      &semimajor_axis_earth_radii, &inclination_deg,
+                      &ra_asc_node_deg, &eccentricity, &arg_perigee_deg,
+                      &mean_anomaly_deg, &ballistic_coef, &prmodel, &pock,
+                      &pzdachi, &output_type) == 1) {
+    printf("Error reading input from %s.\n", input_file);
+
+  } else {
+    printf("epoch_in: %lf\n", epoch_in);
+    printf("object_in: %d\n", object_in);
+    printf("rev_num_in: %d\n", rev_num_in);
+    printf("STEP_SIZE_IN_DAYS: %lf\n", STEP_SIZE_IN_DAYS);
+    printf("NUM_STEPS_TO_PROPAGATE: %d\n", NUM_STEPS_TO_PROPAGATE);
+    printf("semimajor_axis_earth_radii: %lf\n", semimajor_axis_earth_radii);
+    printf("inclination_deg: %lf\n", inclination_deg);
+    printf("ra_asc_node_deg: %lf\n", ra_asc_node_deg);
+    printf("eccentricity: %lf\n", eccentricity);
+    printf("arg_perigee_deg: %lf\n", arg_perigee_deg);
+    printf("mean_anomaly_deg: %lf\n", mean_anomaly_deg);
+    printf("ballistic_coef: %lf\n", ballistic_coef);
+    printf("pock: %d\n", pock);
+    printf("pzdachi: %d\n", pzdachi);
+    printf("output_type: %d\n", output_type);
+    printf("prmodel: %d\n", prmodel);
+    printf("Press Y to read data from keyboard or another one to close the "
+           "program.\n");
+    scanf("%s", option);
+    if (option == "y") {
+      get_input(&epoch_in, &object_in, &rev_num_in, &STEP_SIZE_IN_DAYS,
+                &NUM_STEPS_TO_PROPAGATE, &semimajor_axis_earth_radii,
+                &inclination_deg, &ra_asc_node_deg, &eccentricity,
+                &arg_perigee_deg, &mean_anomaly_deg, &ballistic_coef, &prmodel,
+                &pock, &pzdachi, &output_type);
+    } else {
+      printf("Error reading data.\n");
+      return 1;
+    }
+  }
+  return do_work(&epoch_in, &object_in, &rev_num_in, &STEP_SIZE_IN_DAYS,
+                 &NUM_STEPS_TO_PROPAGATE, &semimajor_axis_earth_radii,
+                 &inclination_deg, &ra_asc_node_deg, &eccentricity,
+                 &arg_perigee_deg, &mean_anomaly_deg, &ballistic_coef, &prmodel,
+                 &pock, &pzadachi, &output_type);
 }
-int do_work(double &epoch_in, int &object_in, int &rev_num_in,
-            double &step_size_in_days, int &number_of_steps,
-            double &semimajor_axis_earth_radii, double &inclination_deg,
-            double &ra_asc_node_deg, double &eccentricity,
-            double &arg_perigee_deg, double &mean_anomaly_deg,
-            double &ballistic_coef, int &prmodel, int &pock, int &pzadachi,
-            int &output_type) {
+int do_work(double *epoch_in, int *object_in, int *rev_num_in,
+            double *step_size_in_days, int *number_of_steps,
+            double *semimajor_axis_earth_radii, double *inclination_deg,
+            double *ra_asc_node_deg, double *eccentricity,
+            double *arg_perigee_deg, double *mean_anomaly_deg,
+            double *ballistic_coef, int *prmodel, int *pock, int *pzadachi,
+            int *output_type) {
   printf("Epoch: %lf\n", epoch_in);
   printf("Object: %d\n", object_in);
   printf("Rev num : %d\n", rev_num_in);
